@@ -1,0 +1,16 @@
+[
+    {
+        "name": "BOLIB-FMT",
+        "host": "MYBOX",
+        "library": "BOLIB",
+        "output": "./BOLIB-Fmt",
+        "formatting": true
+    },
+    {
+        "name": "test123",
+        "host": "ANOTHERBOX",
+        "library": "MYLIB",
+        "output": "./libraries/MYLIB",
+        "formatting": false
+    }
+]
