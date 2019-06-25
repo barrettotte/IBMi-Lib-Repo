@@ -47,7 +47,7 @@ def export_library(args):
         ibmi.login(creds)
         lib_data = ibmi.get_library_data(lib)
         if lib_data:
-            ibmi.write_cache(utils.get_pretty_json(lib_data), '{}/lib_data'.format(lib), as_json=True)
+            ibmi.write_cache(lib_data, '{}/lib_data'.format(lib), ext='json')
         else:
             print("Requested library data for '{}' could not be completed".format(lib))
     except Exception as e:

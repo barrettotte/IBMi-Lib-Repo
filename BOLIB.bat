@@ -1,2 +1,2 @@
 @ECHO OFF
-DEL log.txt & python IBMi-lib-repo.py -e barrett-test
+DEL log.txt & RMDIR /s /q ".\.IBMi-cache" & python IBMi-lib-repo.py -e barrett-test

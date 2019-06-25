@@ -11,8 +11,11 @@ class IBMi():
     def __del__(self):
         self.disconnect()
 
+    def __str__(self):
+        return "IBMi - {}".format("logged in" if self.is_logged_in else "logged out")
+
     def keep_alive(self):
-        return self.send_cmd("NOOP")
+        return self.ftp_client.sendcmd("NOOP")
 
     def connect(self, host, timeout=10000):
         if not self.ftp_client:
@@ -49,14 +52,24 @@ class IBMi():
         utils.mkdir_ine("./{}/{}".format(self.cache_path, library))
         lib_data['objects'] = self.get_object_list(library)
         lib_data['source-pfs'] = self.get_source_pf_list(library)
+        lib_data['members'] = self.get_member_list(library, [spf['name'] for spf in lib_data['source-pfs']])
+        for spf in lib_data['members']:
+            self.get_members_src(library, spf['name'], spf['members'])
         return lib_data
+
+    def get_members_src(self, library, spf, members):
+        utils.mkdir_ine("./{}/{}/{}".format(self.cache_path, library, spf))
+        for mbr in members:
+            if mbr['name']:
+                resp = self.retrieve_member(library, spf, mbr['name'])
+                self.write_cache("\n".join(resp), "{}/{}/{}".format(library, spf, mbr['name']), ext=mbr['type'])
 
     def get_object_list(self, library):
         utils.log("Fetching objects from '{}'...".format(library))
         tmp_out, tmp_tb = "QTEMP/EXPOBJ", "EXPOBJT"
         self.send_cmds([
-          "RCMD DSPOBJD OBJ({}/*ALL) OBJTYPE(*ALL) OUTPUT(*OUTFILE) OUTFILE({})".format(library, tmp_out),
-          "RCMD RUNSQL SQL('CREATE TABLE QTEMP/{} AS".format(tmp_tb) + 
+          "DSPOBJD OBJ({}/*ALL) OBJTYPE(*ALL) OUTPUT(*OUTFILE) OUTFILE({})".format(library, tmp_out),
+          "RUNSQL SQL('CREATE TABLE QTEMP/{} AS".format(tmp_tb) + 
             " (SELECT ODOBNM, ODOBTP, ODOBAT, char(ODOBSZ) AS ODOBSZ, ODOBTX, ODOBOW, ODSRCF, ODSRCL, ODSRCM" +
             " FROM {} ORDER BY ODOBNM) WITH DATA') COMMIT(*NONE)".format(tmp_out)
         ])
@@ -74,24 +87,35 @@ class IBMi():
         utils.log("Fetching physical files of type '{}' from '{}'...".format(file_type, library))
         tmp_out, tmp_tb = "QTEMP/EXPPF" + file_type, "EXPPF{}T".format(file_type)
         self.send_cmds([
-          "RCMD DSPFD FILE({}/*ALL) TYPE(*ATR) OUTPUT(*OUTFILE) FILEATR(*PF) OUTFILE({})".format(library, tmp_out),
-          "RCMD RUNSQL SQL('CREATE TABLE QTEMP/{} AS".format(tmp_tb) + 
+          "DSPFD FILE({}/*ALL) TYPE(*ATR) OUTPUT(*OUTFILE) FILEATR(*PF) OUTFILE({})".format(library, tmp_out),
+          "RUNSQL SQL('CREATE TABLE QTEMP/{} AS".format(tmp_tb) + 
           " (SELECT PHFILE, PHLIB FROM {} WHERE PHDTAT=''{}'' ORDER BY PHFILE) WITH DATA') COMMIT(*NONE)".format(tmp_out, file_type)
         ])
         mbr = self.retrieve_member("QTEMP", tmp_tb, tmp_tb)
         self.write_cache("\n".join(mbr), '{}/pf_{}_list'.format(library, file_type))
         return [self.read_line_pf(line) for line in mbr]
 
+    def get_member_list(self, library, files):
+        mbr_list = []
+        for file in files:
+            tmp_out = "QTEMP/EXPMBR"
+            self.send_cmds([
+              "DSPFD FILE({}/{}) TYPE(*MBR) OUTPUT(*OUTFILE) OUTFILE({})".format(library, file, tmp_out),
+              "RUNSQL SQL('CREATE TABLE QTEMP/{} AS (SELECT MBFILE, MBNAME, MBMTXT, MBSEU2, CHAR(MBMXRL) AS MBMXRL FROM {} ORDER BY MBNAME) WITH DATA') COMMIT(*NONE)".format(file, tmp_out)
+            ])
+            mbr = self.retrieve_member("QTEMP", file, file)
+            utils.mkdir_ine("./{}/{}/{}".format(self.cache_path, library, file))
+            self.write_cache("\n".join(mbr), '{}/{}/_mbr_list'.format(library, file))
+            mbr_list.append({'name': file, 'members': [self.read_line_mbr(line) for line in mbr]})
+        return mbr_list
+
     def retrieve_member(self, library, file, member):
         resp = []
-        cmd = 'RETR {}'.format("/QSYS.lib/{}.lib/{}.file/{}.mbr").format(library, file, member)
-        utils.log("Command: " + cmd)
-        utils.log("Response: " + self.ftp_client.retrlines(cmd, resp.append))
+        if member:
+            cmd = 'RETR {}'.format("/QSYS.lib/{}.lib/{}.file/{}.mbr").format(library, file, member)
+            utils.log("Command: " + cmd)
+            utils.log("Response: " + self.ftp_client.retrlines(cmd, resp.append))
         return resp
-
-    def delete_object(self, library, obj):
-        utils.log("Deleting {}/{}".format(library, obj))
-        self.send_cmd("DLTOBJ OBJ({}/{}) OBJTYPE(*FILE)")
 
     def read_line_object(self, line, library):
         return {
@@ -113,11 +137,22 @@ class IBMi():
           'library': line[10:20].strip()
         }
 
+    def read_line_mbr(self, line):
+        return {
+          'object': line[0:10].strip(),
+          'name': line[10:20].strip(),
+          'desc': line[20:70].strip(),
+          'type': line[70:80].strip(),
+          'record-len': line[80:87].strip()
+        }
+
     def send_cmds(self, cmds):
         for cmd in cmds: self.send_cmd(cmd)
 
     def send_cmd(self, cmd):
+        if not self.is_logged_in: self.raise_exception("Not logged into IBMi")
         try:
+            cmd = "RCMD " + cmd
             utils.log("FTP Command: " + cmd)
             resp = self.ftp_client.sendcmd(cmd)
             utils.log("Response: " + resp)
@@ -125,12 +160,12 @@ class IBMi():
         except ftplib.all_errors as e:
             self.raise_exception(e=e)
 
-    def write_cache(self, data, file_path, as_json=False):
+    def write_cache(self, data, file_path, ext="txt"):
         utils.mkdir_ine("./" + self.cache_path)
-        if as_json:
-            with open("{}/{}.json".format(self.cache_path, file_path), 'w+') as f: f.write(utils.get_pretty_json(str(data)))
-        else:    
-            with open("{}/{}.txt".format(self.cache_path, file_path), 'w+') as f: f.write(str(data))
+        if ext == "json":
+            with open("{}/{}.json".format(self.cache_path, file_path), 'w+') as f: f.write(utils.get_pretty_json(data))
+        else:
+            with open("{}/{}.{}".format(self.cache_path, file_path, ext), 'w+') as f: f.write(str(data))
 
     def raise_exception(self, msg="Unexpected exception", e=None):
         if e:
