@@ -21,4 +21,5 @@ This was made to make taking notes on learning the IBMi easier and to prototype 
 
 
 ## References
-* TBD
+* QSYS2.generate_sql https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzajq/rzajqprocgensql.htm
+

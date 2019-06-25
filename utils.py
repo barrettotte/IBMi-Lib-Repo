@@ -15,13 +15,13 @@ def write_file_json(file_path, buffer):
     except Exception as e: 
         print("File at {} could not be written.\n  {}".format(file_path, e))
 
-def getTimestamp():
+def get_timestamp():
     return str(datetime.datetime.now())
 
 def log(s, file_path='./log.txt', to_console=True):
     if to_console: print(s)
     try:
-        with open(file_path, 'a+') as f: f.write("[{}] {}\n".format(getTimestamp(), s))
+        with open(file_path, 'a+') as f: f.write("[{}] {}\n".format(get_timestamp(), s))
     except Exception as e:
         print("Could not write to log.\n  {}".format(e))
 
@@ -50,3 +50,4 @@ def required_pass(prompt):
 
 def mkdir_ine(dir_path):
     if not os.path.exists(dir_path): os.makedirs(dir_path)
+
