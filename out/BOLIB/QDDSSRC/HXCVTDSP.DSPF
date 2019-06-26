@@ -1,0 +1,13 @@
+     A          R RECORD1                   CF03(03 'EXIT')
+     A                                  2 18'MY SIMPLE HEX CONVERTER'
+     A                                  2  4USER
+     A                                  3  4SYSNAME
+     A                                  2 65DATE EDTCDE(Y)
+     A                                  3 65TIME
+     A                                  5 15'ENTER A HEX DIGIT:'
+     A            HNUM           1   B  5 35
+     A          R RECORD2                   OVERLAY
+     A                                      CF03(03 'EXIT')
+     A                                  7 15'DECIMAL EQUIVALENT:'
+     A            DNUM           2S 0B  7 35
+     A                                 19  3'F3=EXIT'

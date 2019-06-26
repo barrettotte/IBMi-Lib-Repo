@@ -1,0 +1,622 @@
+{
+    "name": "BOLIB",
+    "objects": [
+        {
+            "library": "BOLIB",
+            "name": "CLCRTPG",
+            "type": "*PGM",
+            "ext": "CLP",
+            "size": "49152",
+            "desc": "Create MI program using QPRCRTPG API",
+            "owner": "QPGMR",
+            "src_pf": "QCLSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "CLCRTPG"
+        },
+        {
+            "library": "BOLIB",
+            "name": "EMPTYINV",
+            "type": "*FILE",
+            "ext": "LF",
+            "size": "36864",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "EVFEVENT",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "49152",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "EXPOBJT",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "110592",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "EXPPF",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "69632",
+            "desc": "Output file for DSPFD TYPE(*ATR) FILEATR(*PF)",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "FIRSTCL",
+            "type": "*PGM",
+            "ext": "CLLE",
+            "size": "90112",
+            "desc": "MY FIRST CL PROGRAM",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "FIZZBUZZ",
+            "type": "*PGM",
+            "ext": "RPGLE",
+            "size": "114688",
+            "desc": "Fizzbuzz in RPGLE Free",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "FLASHCARDS",
+            "type": "*FILE",
+            "ext": "DSPF",
+            "size": "8192",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "FLASHCARDS"
+        },
+        {
+            "library": "BOLIB",
+            "name": "FPGMCALL",
+            "type": "*PGM",
+            "ext": "RPGLE",
+            "size": "106496",
+            "desc": "Calling CMD from RPGLE",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "HIRAGANAFL",
+            "type": "*PGM",
+            "ext": "RPGLE",
+            "size": "122880",
+            "desc": "Hiragana flashcards",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "HRGNA",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "73728",
+            "desc": "Hiragana and Romaji table",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "HRGNA"
+        },
+        {
+            "library": "BOLIB",
+            "name": "HXCVT",
+            "type": "*PGM",
+            "ext": "RPGLE",
+            "size": "139264",
+            "desc": "Convert Hex character to Decimal - HXCVTDSP DSPF",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "HXCVTDSP",
+            "type": "*FILE",
+            "ext": "DSPF",
+            "size": "8192",
+            "desc": "Convert Hex character to decimal - HXCVT",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "HXCVTDSP"
+        },
+        {
+            "library": "BOLIB",
+            "name": "INVENTORY",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "229376",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "MI01",
+            "type": "*PGM",
+            "ext": "",
+            "size": "24576",
+            "desc": "Compare two packed arguments and return larger",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "MYTABLE",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "40960",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "ORDER",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "94208",
+            "desc": "Multiple key field table",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "ORDER"
+        },
+        {
+            "library": "BOLIB",
+            "name": "PERSON",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "98304",
+            "desc": "Simple person table",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "PERSON"
+        },
+        {
+            "library": "BOLIB",
+            "name": "PERSONL1",
+            "type": "*FILE",
+            "ext": "LF",
+            "size": "69632",
+            "desc": "Simple view over person table",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "PERSONL1"
+        },
+        {
+            "library": "BOLIB",
+            "name": "PERSONL2",
+            "type": "*FILE",
+            "ext": "LF",
+            "size": "57344",
+            "desc": "Another simple view over person table",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "PERSONL2"
+        },
+        {
+            "library": "BOLIB",
+            "name": "PERSONL3",
+            "type": "*FILE",
+            "ext": "LF",
+            "size": "73728",
+            "desc": "View over person table on age > 30",
+            "owner": "QPGMR",
+            "src_pf": "QDDSSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "PERSONL3"
+        },
+        {
+            "library": "BOLIB",
+            "name": "QCLLESRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "32768",
+            "desc": "CLLE Source File",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "QCLSRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "49152",
+            "desc": "CL Source File",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "QDDSSRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "139264",
+            "desc": "DDS Source file",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "QMISRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "32768",
+            "desc": "MI Source File",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "QRPGLESRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "98304",
+            "desc": "RPGLE Source",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "QRPGSRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "24576",
+            "desc": "RPG Source file",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "QSQLSRC",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "73728",
+            "desc": "SQL Source File",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "TAN",
+            "type": "*SRVPGM",
+            "ext": "CLE",
+            "size": "122880",
+            "desc": "SQL FUNCTION TAN",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "TEST",
+            "type": "*FILE",
+            "ext": "PF",
+            "size": "45056",
+            "desc": "",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "TESTMI01",
+            "type": "*PGM",
+            "ext": "CLP",
+            "size": "45056",
+            "desc": "Test MI01",
+            "owner": "QPGMR",
+            "src_pf": "QCLSRC",
+            "src_lib": "BOLIB",
+            "src_mbr": "TESTMI01"
+        },
+        {
+            "library": "BOLIB",
+            "name": "UPDATE_QOH",
+            "type": "*PGM",
+            "ext": "CLE",
+            "size": "81920",
+            "desc": "SQL PROCEDURE UPDATE_QOH",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        },
+        {
+            "library": "BOLIB",
+            "name": "XFIZZBUZZ",
+            "type": "*PGM",
+            "ext": "RPGLE",
+            "size": "102400",
+            "desc": "FIZZBUZZ IN RPGLE FIXED",
+            "owner": "QPGMR",
+            "src_pf": "",
+            "src_lib": "",
+            "src_mbr": ""
+        }
+    ],
+    "source-pfs": [
+        {
+            "name": "QCLLESRC",
+            "library": "BOLIB",
+            "desc": "CLLE Source File"
+        },
+        {
+            "name": "QCLSRC",
+            "library": "BOLIB",
+            "desc": "CL Source File"
+        },
+        {
+            "name": "QDDSSRC",
+            "library": "BOLIB",
+            "desc": "DDS Source file"
+        },
+        {
+            "name": "QMISRC",
+            "library": "BOLIB",
+            "desc": "MI Source File"
+        },
+        {
+            "name": "QRPGLESRC",
+            "library": "BOLIB",
+            "desc": "RPGLE Source"
+        },
+        {
+            "name": "QRPGSRC",
+            "library": "BOLIB",
+            "desc": "RPG Source file"
+        },
+        {
+            "name": "QSQLSRC",
+            "library": "BOLIB",
+            "desc": "SQL Source File"
+        }
+    ],
+    "members": [
+        {
+            "name": "QCLLESRC",
+            "members": [
+                {
+                    "object": "QCLLESRC",
+                    "name": "FIRSTCL",
+                    "desc": "My first CL program",
+                    "type": "CLLE",
+                    "record-len": "92"
+                }
+            ]
+        },
+        {
+            "name": "QCLSRC",
+            "members": [
+                {
+                    "object": "QCLSRC",
+                    "name": "CLCRTPG",
+                    "desc": "Create MI program using QPRCRTPG API",
+                    "type": "CLP",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QCLSRC",
+                    "name": "TESTMI01",
+                    "desc": "Test MI01",
+                    "type": "CLP",
+                    "record-len": "92"
+                }
+            ]
+        },
+        {
+            "name": "QDDSSRC",
+            "members": [
+                {
+                    "object": "QDDSSRC",
+                    "name": "FLASHCARDS",
+                    "desc": "",
+                    "type": "DSPF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "HRGNA",
+                    "desc": "Hiragana and Romaji table",
+                    "type": "PF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "HXCVTDSP",
+                    "desc": "Convert Hex character to decimal - HXCVT",
+                    "type": "DSPF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "ORDER",
+                    "desc": "Multiple key field table",
+                    "type": "PF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "PERSON",
+                    "desc": "Simple person table",
+                    "type": "PF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "PERSONL1",
+                    "desc": "Simple view over person table",
+                    "type": "LF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "PERSONL2",
+                    "desc": "Another simple view over person table",
+                    "type": "LF",
+                    "record-len": "92"
+                },
+                {
+                    "object": "QDDSSRC",
+                    "name": "PERSONL3",
+                    "desc": "View over person table on age > 30",
+                    "type": "LF",
+                    "record-len": "92"
+                }
+            ]
+        },
+        {
+            "name": "QMISRC",
+            "members": [
+                {
+                    "object": "QMISRC",
+                    "name": "MI01",
+                    "desc": "Return larger of two packed arguments",
+                    "type": "MI",
+                    "record-len": "92"
+                }
+            ]
+        },
+        {
+            "name": "QRPGLESRC",
+            "members": [
+                {
+                    "object": "QRPGLESRC",
+                    "name": "FIZZBUZZ",
+                    "desc": "Fizzbuzz in RPGLE Free",
+                    "type": "RPGLE",
+                    "record-len": "212"
+                },
+                {
+                    "object": "QRPGLESRC",
+                    "name": "HIRAGANAFL",
+                    "desc": "Hiragana flashcards",
+                    "type": "RPGLE",
+                    "record-len": "212"
+                },
+                {
+                    "object": "QRPGLESRC",
+                    "name": "HXCVT",
+                    "desc": "Convert Hex character to Decimal - HXCVTDSP DSPF",
+                    "type": "RPGLE",
+                    "record-len": "212"
+                },
+                {
+                    "object": "QRPGLESRC",
+                    "name": "PGMCALL",
+                    "desc": "Call a Program - QCMDEXC (Work with Spool Files)",
+                    "type": "RPGLE",
+                    "record-len": "212"
+                }
+            ]
+        },
+        {
+            "name": "QRPGSRC",
+            "members": [
+                {
+                    "object": "QRPGSRC",
+                    "name": "HELLORPG",
+                    "desc": "Hello World in RPG",
+                    "type": "RPG",
+                    "record-len": "92"
+                }
+            ]
+        },
+        {
+            "name": "QSQLSRC",
+            "members": [
+                {
+                    "object": "QSQLSRC",
+                    "name": "EMPTY_INV",
+                    "desc": "View of all empty inventory items",
+                    "type": "SQL",
+                    "record-len": "212"
+                },
+                {
+                    "object": "QSQLSRC",
+                    "name": "INVENTORY",
+                    "desc": "Inventory of items",
+                    "type": "SQL",
+                    "record-len": "212"
+                },
+                {
+                    "object": "QSQLSRC",
+                    "name": "TAN",
+                    "desc": "Calculate tangent",
+                    "type": "SQL",
+                    "record-len": "212"
+                },
+                {
+                    "object": "QSQLSRC",
+                    "name": "UPDATE_QOH",
+                    "desc": "Update inventory item quantity on hand",
+                    "type": "SQL",
+                    "record-len": "212"
+                }
+            ]
+        }
+    ]
+}

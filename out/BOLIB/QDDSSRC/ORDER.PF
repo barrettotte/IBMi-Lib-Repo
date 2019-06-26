@@ -1,0 +1,8 @@
+                R ORDFMT
+                  ORDNO          5S 0
+                  ORDITM        10S 0
+                  ORDITMDES     10A
+                  ORDDATE         L
+                  ORDQTY         2S 0
+                K ORDITM
+                K ORDDATE

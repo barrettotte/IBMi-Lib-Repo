@@ -1,0 +1,5 @@
+                R PERSFMTL1                 PFILE(PERSON)
+                  PERSONID
+                  FIRSTNAME
+                  LASTNAME
+                K FIRSTNAME

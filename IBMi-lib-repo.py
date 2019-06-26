@@ -40,16 +40,22 @@ def new_library(args):
 def export_library(args):
     config = get_configuration(args[1])
     lib = config["library"]
-    creds = get_credentials(config["name"], config["host"])
+    if "--creds" in args:
+        creds_idx = args.index("--creds")
+        if creds_idx+2 > len(args):
+            print("Not enough arguments for credentials flag. --creds <user> <password>")
+            exit(1)
+        creds = {'user': args[creds_idx+1], 'pw': args[creds_idx+2]}
+    else:
+        print("Credentials not provided.  --creds <user> <password>\nPrompting for credentials...")
+        creds = get_credentials(config["name"], config["host"])
     ibmi = IBMi()
     ibmi.connect(config["host"])
     try:
         ibmi.login(creds)
         lib_data = ibmi.get_library_data(lib)
-        if lib_data:
-            ibmi.write_cache(lib_data, '{}/lib_data'.format(lib), ext='json')
-        else:
-            print("Requested library data for '{}' could not be completed".format(lib))
+        ibmi.write_file(lib_data, '{}/lib_data'.format(lib), ext='json')
+        ibmi.generate_markdown(lib_data)
     except Exception as e:
         utils.log("Exception occurred. Please yell at the programmer ; {}".format(e))
         traceback.print_exc()
@@ -57,9 +63,9 @@ def export_library(args):
 def print_help(args):
     print("\n".join([
       "IBMi-lib-repo HELP:",
-      "  [ -e, --existing ] <library name>  -->  Re-export an existing library",
-      "  [ -h, --help ]                     -->  Display help information",
-      "  [ -n, --new ]                      -->  Setup a new library",    
+      "  [-e <library name>] [--creds <user> <password>]  -->  Re-export an existing library",
+      "  [-h]                                             -->  Display help information",
+      "  [-n] [--creds <user> <password>]                 -->  Setup a new library"
     ]))
 
 def get_commands(): 
@@ -71,9 +77,6 @@ def process_args(args):
         return False
     for cmd in get_commands():
         if args[0] == cmd[0]:
-            if len(args)-1 != cmd[1]:
-                print("Incorrect amount of arguments passed. Expected {} argument(s)".format(cmd[1]))
-                return False
             cmd[2](args)
             return True
     print("Invalid argument: '{}' Not found.".format(args[0]))

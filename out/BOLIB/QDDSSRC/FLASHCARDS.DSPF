@@ -1,0 +1,10 @@
+     A          R FLSHCRDFMT
+     A                                  2 32' '
+     A                                  2  4USER
+     A                                  3  4SYSNAME
+     A                                  2 65DATE EDTCDE(Y)
+     A                                  3 65TIME
+     A                                  5 32 'HEY WHAT UP'
+     A            FIELD1        10G    10 32 CCSID(61952)
+     A                                 23  2 'F3=EXIT F5=REFRESH'
+     A                                       COLOR(BLU)

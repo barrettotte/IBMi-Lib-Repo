@@ -1,0 +1,7 @@
+                R PERSFMT3                  PFILE(PERSON)
+                  PERSONID
+                  FIRSTNAME
+                  LASTNAME
+                  AGE
+                K PERSONID
+                O AGE                        COMP(GT 30)

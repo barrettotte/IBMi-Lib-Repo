@@ -1,0 +1,49 @@
+CREATE OR REPLACE VIEW BOLIB.PERSONL2 ( 
+
+--  SQL1506   30   Key or attribute for PERSONL2 in BOLIB ignored. 
+
+	PERSONID , 
+
+	FIRSTNAME , 
+
+	LASTNAME , 
+
+	AGE ) 
+
+	AS 
+
+	SELECT 
+
+	PERSONID , 
+
+	FIRSTNAME , 
+
+	LASTNAME , 
+
+	AGE   
+
+	FROM BOLIB.PERSON 
+
+	  
+
+	RCDFMT PERSONFMT  ; 
+
+  
+
+LABEL ON TABLE BOLIB.PERSONL2 
+
+	IS 'Another simple view over person table' ; 
+
+  
+
+GRANT DELETE , INSERT , SELECT , UPDATE   
+
+ON BOLIB.PERSONL2 TO PUBLIC ; 
+
+  
+
+GRANT ALTER , DELETE , INSERT , REFERENCES , SELECT , UPDATE   
+
+ON BOLIB.PERSONL2 TO QPGMR WITH GRANT OPTION ; 
+
+  
