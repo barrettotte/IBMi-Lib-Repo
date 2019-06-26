@@ -3,11 +3,11 @@ import utils as utils
 
 class IBMi():
 
-    def __init__(self, cache_path="out"):
+    def __init__(self, out_path="out"):
         self.ftp_client = ftplib.FTP()
-        self.cache_path = cache_path
+        self.out_path = out_path
         self.is_logged_in = False
-        utils.mkdir_ine("./" + self.cache_path)
+        utils.mkdir_ine("./" + self.out_path)
 
     def __del__(self):
         self.disconnect()
@@ -50,8 +50,8 @@ class IBMi():
         if not self.is_logged_in: 
             self.raise_exception("Cannot complete request. Not logged into IBMi")
         lib_data = {'name': library}
-        utils.mkdir_ine("./{}/{}".format(self.cache_path, library))
-        utils.mkdir_ine("./{}/{}/GENSQL".format(self.cache_path, library))
+        utils.mkdir_ine("./{}/{}".format(self.out_path, library))
+        utils.mkdir_ine("./{}/{}/GENSQL".format(self.out_path, library))
         lib_data['objects'] = self.get_object_list(library)
         lib_data['source-pfs'] = self.get_source_pf_list(library)
         lib_data['members'] = self.get_member_list(library, [spf['name'] for spf in lib_data['source-pfs']])
@@ -62,6 +62,11 @@ class IBMi():
             elif obj['ext'] == 'PF':  self.generate_sql_src(library, obj['name'], 'TABLE')
             elif obj['ext'] == 'CLE': self.generate_sql_src(library, obj['name'], 'PROCEDURE' if obj['type'] == "SRVPGM" else 'FUNCTION')
         return lib_data
+
+    def generate_repo(self, library_data):
+        self.generate_markdown(library_data)
+        self.write_file("## Ignore", '{}/'.format(library_data['name']), ext='gitignore')
+        self.write_file("## Attributes", '{}/'.format(library_data['name']), ext='gitattributes')
 
     def generate_markdown(self, library_data):
         main_md = "# {}\n\n".format(library_data['name'])
@@ -75,7 +80,7 @@ class IBMi():
             for mbr in spf['members']:
                 main_md += "| {} | {} | {} | {} |\n".format(mbr['name'], mbr['desc'], mbr['type'], mbr['record-len'])
         self.write_file(main_md, '{}/README'.format(library_data['name']), ext='md')
-        
+
     def generate_sql_src(self, library, obj_name, obj_type='TABLE'):
         utils.log("Generating SQL for '{}/{}'...".format(library, obj_name))
         self.send_cmd(
@@ -89,9 +94,9 @@ class IBMi():
 
     def get_members_src(self, library, spf, members):
         for mbr in members: self.get_member_src(library, spf, mbr['name'], mbr['type'])
-    
+
     def get_member_src(self, library, spf, member_name, member_type):
-        utils.mkdir_ine("./{}/{}/{}".format(self.cache_path, library, spf))
+        utils.mkdir_ine("./{}/{}/{}".format(self.out_path, library, spf))
         if member_name:
             resp = self.retrieve_member(library, spf, member_name)
             self.write_file("\n".join(resp), "{}/{}/{}".format(library, spf, member_name), ext=member_type)
@@ -134,7 +139,7 @@ class IBMi():
               "RUNSQL SQL('CREATE TABLE QTEMP/{} AS (SELECT MBFILE, MBNAME, MBMTXT, MBSEU2, CHAR(MBMXRL) AS MBMXRL FROM {} ORDER BY MBNAME) WITH DATA') COMMIT(*NONE)".format(file, tmp_out)
             ])
             mbr = self.retrieve_member("QTEMP", file, file)
-            utils.mkdir_ine("./{}/{}/{}".format(self.cache_path, library, file))
+            utils.mkdir_ine("./{}/{}/{}".format(self.out_path, library, file))
             mbr_list.append({'name': file, 'members': [self.read_line_mbr(line) for line in mbr]})
         return mbr_list
 
@@ -192,9 +197,9 @@ class IBMi():
 
     def write_file(self, data, file_path, ext="txt"):
         if ext == "json":
-            with open("{}/{}.json".format(self.cache_path, file_path), 'w+') as f: f.write(utils.get_pretty_json(data))
+            with open("{}/{}.json".format(self.out_path, file_path), 'w+') as f: f.write(utils.get_pretty_json(data))
         else:
-            with open("{}/{}.{}".format(self.cache_path, file_path, ext), 'w+') as f: f.write(str(data))
+            with open("{}/{}.{}".format(self.out_path, file_path, ext), 'w+') as f: f.write(str(data))
 
     def raise_exception(self, msg="Unexpected exception", e=None):
         if e:

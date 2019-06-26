@@ -1,16 +1,16 @@
 [
     {
-        "name": "BOLIB-FMT",
+        "name": "barrett-test",
+        "description": "My personal library",
         "host": "MYBOX",
         "library": "BOLIB",
-        "output": "./BOLIB-Fmt",
-        "formatting": true
+        "output": "./out"
     },
     {
         "name": "test123",
+        "description": "Some other library",
         "host": "ANOTHERBOX",
         "library": "MYLIB",
-        "output": "./libraries/MYLIB",
-        "formatting": false
+        "output": "./libraries/MYLIB"
     }
 ]

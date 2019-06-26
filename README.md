@@ -29,3 +29,4 @@ This was made to make taking notes on learning the IBMi easier and to prototype 
 * QSYS2.generate_sql https://www.ibm.com/support/knowledgecenter/en/ssw_ibm_i_72/rzajq/rzajqprocgensql.htm
 * https://stackoverflow.com/questions/24398044/downloading-a-lot-of-files-using-python
 * https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_72/sqlp/rbafypdf.pdf
+

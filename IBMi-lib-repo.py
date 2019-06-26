@@ -49,13 +49,13 @@ def export_library(args):
     else:
         print("Credentials not provided.  --creds <user> <password>\nPrompting for credentials...")
         creds = get_credentials(config["name"], config["host"])
-    ibmi = IBMi()
+    ibmi = IBMi(out_path=config["output"])
     ibmi.connect(config["host"])
     try:
         ibmi.login(creds)
         lib_data = ibmi.get_library_data(lib)
         ibmi.write_file(lib_data, '{}/lib_data'.format(lib), ext='json')
-        ibmi.generate_markdown(lib_data)
+        ibmi.generate_repo(lib_data)
     except Exception as e:
         utils.log("Exception occurred. Please yell at the programmer ; {}".format(e))
         traceback.print_exc()
