@@ -14,7 +14,8 @@ This was made to make taking notes on learning the IBMi easier and to prototype 
 
 
 ## Example
-Example of my personal library, **BOLIB**, found in ```./out```.
+* Example of my personal library, **BOLIB**, found in ```./out```.
+* ```config.json``` file included as ```config.example.json```.
 
 
 ## Usage
