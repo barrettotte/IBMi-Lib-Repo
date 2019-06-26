@@ -70,7 +70,7 @@ class IBMi():
 
     def generate_markdown(self, library_data):
         main_md = "# {}\n\n".format(library_data['name'])
-        main_md = "## Objects\n\n| Name | Type | Extension | Size (KB) | Description |\n"
+        main_md += "## Objects\n\n| Name | Type | Extension | Size (KB) | Description |\n"
         main_md += "|-----|-----|-----|-----|-----|\n"
         for obj in library_data['objects']:
             main_md += "| {} | {} | {} | {} | {} |\n".format(obj['name'], obj['type'], obj['ext'].replace("*","\*"), obj['size'], obj['desc'])
